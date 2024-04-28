@@ -7,12 +7,14 @@ import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css';
 
 export const MapComponent = (
     {
-        route,
+        fastRoute,
+        safeRoute,
         startLong,
         startLat,
         endLong,
         endLat,
-        streetLightCoords
+        streetLightCoords,
+        crimeCoords
     }) => {
 
     const [centerLong, setCenterLong] = useState(-72.058291);
@@ -37,18 +39,27 @@ export const MapComponent = (
             zoom: 12
         });
 
-        const geojson = {
+        const fastGeoJson = {
             type: 'Feature',
             properties: {},
             geometry: {
                 type: 'LineString',
-                coordinates: route
+                coordinates: fastRoute
             }
         };
 
- 
+        const safeGeoJson = {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+                type: 'LineString',
+                coordinates: safeRoute
+            }
+        };
 
-        console.log("geojson", geojson);
+
+
+        console.log("geojson", fastGeoJson);
 
         // if the route already exists on the map, we'll reset it using setData
         map.on('load', function () {
@@ -57,18 +68,18 @@ export const MapComponent = (
 
             // if the route already exists on the map, we'll reset it using setData
 
-            if (route && map.getSource('route')) {
+            if (fastRoute && map.getSource('fastRoute')) {
                 console.log("route exists")
-                map.getSource('route').setData(geojson);
+                map.getSource('fastRoute').setData(fastGeoJson);
             }
             // otherwise, we'll make a new request
             else {
                 map.addLayer({
-                    id: 'route',
+                    id: 'fastRoute',
                     type: 'line',
                     source: {
                         type: 'geojson',
-                        data: geojson
+                        data: fastGeoJson
                     },
                     layout: {
                         'line-join': 'round',
@@ -81,6 +92,33 @@ export const MapComponent = (
                     }
                 });
             }
+
+
+            if (safeRoute && map.getSource('safeRoute')) {
+                console.log("route exists")
+                map.getSource('safeRoute').setData(safeGeoJson);
+            }
+            // otherwise, we'll make a new request
+            else {
+                map.addLayer({
+                    id: 'safeRoute',
+                    type: 'line',
+                    source: {
+                        type: 'geojson',
+                        data: safeGeoJson
+                    },
+                    layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    paint: {
+                        'line-color': '#32CD32',
+                        'line-width': 10,
+                        'line-opacity': 0.75
+                    }
+                });
+            }
+
 
             // 'cluster' option to true.
             map.addSource('streetLights', {
@@ -106,9 +144,45 @@ export const MapComponent = (
                 source: 'streetLights',
                 paint: {
                     'circle-color': '#ffff00', // yellow color
-                    'circle-radius': 10
+                    'circle-radius': 5,
+                    'circle-blur': 0.5
                 }
             });
+
+            map.addSource('crimeData', {
+                'type': 'geojson',
+                'data': {
+                    'type': 'FeatureCollection',
+                    'features': crimeCoords.map(coord => ({
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': coord
+                        }
+                    }))
+                }
+            });
+
+            map.addLayer({
+                id: 'crimeData',
+                type: 'circle',
+                source: 'crimeData',
+                paint: {
+                    'circle-color': '#FF0000', // red color
+                    'circle-radius': ['interpolate', ['linear'], ['zoom'], 0, 10, 20, 10],
+                    'circle-blur': 0.5
+                }
+            });
+
+            let toggle = true;
+
+            setInterval(() => {
+                map.setPaintProperty('crimeData', 'circle-color', toggle ? '#FF0000' : '#FFC0CB'); // red and pink
+                map.setPaintProperty('crimeData', 'circle-blur', toggle ? 0 : 1); // toggle blur
+                toggle = !toggle;
+            }, 1000); // change every second
+
+
         });
         // add turn instructions here at the end
 
@@ -133,7 +207,7 @@ export const MapComponent = (
         // map.addControl(directions, 'top-left');
 
         return () => map.remove();
-    }, [route, startLong, startLat, endLong, endLat, centerLong, centerLat]);
+    }, [fastRoute, safeRoute, startLong, startLat, endLong, endLat, centerLong, centerLat, streetLightCoords, crimeCoords]);
 
     return (
         <div id="map" style={{ width: '100%', height: '100%' }}></div>

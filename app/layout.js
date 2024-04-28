@@ -11,12 +11,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-      <html lang="en">
-            <NextUIProvider>
+    <html lang="en">
+      <NextUIProvider>
+        <main className="dark text-foreground bg-background">
 
-        <body className={inter.className}>{children}</body>
-        </NextUIProvider>
+          <body className={inter.className}>{children}</body>
+        </main>
+      </NextUIProvider>
 
-      </html>
+    </html>
   );
 }
