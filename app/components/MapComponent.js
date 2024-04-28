@@ -17,8 +17,8 @@ export const MapComponent = (
         crimeCoords
     }) => {
 
-    const [centerLong, setCenterLong] = useState(-72.058291);
-    const [centerLat, setCenterLat] = useState(42.360253);
+    const [centerLong, setCenterLong] = useState(-71.1040018);
+    const [centerLat, setCenterLat] = useState(42.3655767);
 
     useEffect(() => {
         mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
@@ -86,8 +86,8 @@ export const MapComponent = (
                         'line-cap': 'round'
                     },
                     paint: {
-                        'line-color': '#3887be',
-                        'line-width': 5,
+                        'line-color': '#8B0000',
+                        'line-width': 10,
                         'line-opacity': 0.75
                     }
                 });
@@ -112,9 +112,9 @@ export const MapComponent = (
                         'line-cap': 'round'
                     },
                     paint: {
-                        'line-color': '#32CD32',
+                        'line-color': '#bf00ff',
                         'line-width': 10,
-                        'line-opacity': 0.75
+                        'line-opacity': 1
                     }
                 });
             }

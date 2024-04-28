@@ -12,9 +12,9 @@ import { cambridgeCrimeData } from "./assets/cambridgeCrimeData";
 
 export default function Home() {
 
-  const [startText, setStartText] = useState("394 Marlborough St, Boston, MA 02115");
+  const [startText, setStartText] = useState("Charles Street, Cambridge, Massachusetts 02141, United States");
   const [endText, setEndText] = useState("Harvard");
-  const [middleText, setMiddleText] = useState("Boston Common, Boston, MA 02108");
+  const [middleText, setMiddleText] = useState("103 Fulkerson St, Cambridge, Massachusetts 02141, United States");
 
   const [fromWayPointLong, setFromWayPointLong] = useState(null);
   const [fromWayPointLat, setFromWayPointLat] = useState(null);
