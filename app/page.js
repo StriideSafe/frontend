@@ -9,6 +9,17 @@ import { getMapboxDirections, getGeocode } from "./service/mapboxService";
 import { bostonStreetLampCoords } from "./assets/bostonStreetLamp";
 import { cambridgeStreetLamp } from "./assets/cambridgeStreetLamp";
 import { cambridgeCrimeData } from "./assets/cambridgeCrimeData";
+import { BsSignDoNotEnterFill } from "react-icons/bs";
+import { HiOutlineLightBulb } from "react-icons/hi";
+import { MdOutlineLocalPolice } from "react-icons/md";
+import { FaRunning } from "react-icons/fa";
+import { TiWeatherStormy } from "react-icons/ti";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { GiHazardSign } from "react-icons/gi";
+import { TbHealthRecognition } from "react-icons/tb";
+import { MdAddBusiness } from "react-icons/md";
+
+
 
 export default function Home() {
 
@@ -114,6 +125,38 @@ export default function Home() {
       </div>
 
 
+  <div className="feature-buttons" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', padding: '20px', background: '#E3DCF4', display: 'flex', justifyContent: 'center' }}>
+
+      <div className="flex gap-4 items-center">
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<BsSignDoNotEnterFill/>}> 
+      Closure
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<HiOutlineLightBulb />}>
+      Lighting
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<MdOutlineLocalPolice />}>
+      Police
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<FaRunning />}>
+      Foot Traffic
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<TiWeatherStormy />}>
+      Bad Weather
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<FaPeopleGroup />}>
+      Safe Haven
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<GiHazardSign />}>
+      Hazard
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<TbHealthRecognition />}>
+      Quality of Area
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<MdAddBusiness />}>
+      Open Business
+      </Button>    
+    </div>
+    </div>
 
     </main>
   );
