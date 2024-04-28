@@ -9,6 +9,8 @@ import { getMapboxDirections, getGeocode } from "./service/mapboxService";
 import { bostonStreetLampCoords } from "./assets/bostonStreetLamp";
 import { cambridgeStreetLamp } from "./assets/cambridgeStreetLamp";
 import { cambridgeCrimeData } from "./assets/cambridgeCrimeData";
+import {UserIcon} from './UserIcon';
+import {CameraIcon} from './CameraIcon';
 
 export default function Home() {
 
@@ -114,6 +116,38 @@ export default function Home() {
       </div>
 
 
+  <div className="feature-buttons" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', padding: '20px', background: '#E3DCF4', display: 'flex', justifyContent: 'center' }}>
+
+      <div className="flex gap-4 items-center">
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Closure
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Lighting
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Police
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Foot Traffic
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Bad Weather
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Safe Haven
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Hazard
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Quality of Area
+      </Button>    
+      <Button style={{ backgroundColor: '#D9CBFB', color: 'black' }} variant="bordered" endContent={<CameraIcon/>}>
+      Open Business
+      </Button>    
+    </div>
+    </div>
 
     </main>
   );
